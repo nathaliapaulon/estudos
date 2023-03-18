@@ -1,0 +1,358 @@
+echo - permite que o usuário escreva strings de caracteres para a saída padrão
+	Ajuda para o comando:
+		echo --help
+		man echo
+		
+touch - cria um arquivo em branco ou atualiza o horário de um arquivo
+
+mkdir - cria um diretório
+	Ex:
+		mkdir diretorio1
+	Criar árvore de diretórios
+		mkdir -p diretorio1/exercicio1
+
+rm - para remover arquivos
+	Remover diretórios utilizar sempre -r
+		rm -r diretorio1 
+	
+	Forçar para apagar um arquivo/diretório -f
+		rm -f
+		rm -rf
+	
+sleep - aguarda um tempo
+	Ex:
+		sleep 10
+	(aguarda 10 segundos)
+
+cat - ler arquivo - joga para a tela - saída padrão
+	Numerar linhas que não estão em branco -b 
+	Ex:
+		cat -b arquivo.txt
+
+	Numerar linhas que mesmo que estão em branco -n	
+	Ex:
+		cat -n arquivo.txt
+
+	Mostrar caracteres especiais -A 
+	$ = final da linha
+	^I^I = tab
+	NADA = espaço
+	Ex:
+		cat -A arquivo.txt
+
+tac - ler arquivo ao contrário - de baixo para cima
+	Ex:
+		tac arquivo.txt
+
+tail - mostra as últimas 10 linhas de um arquivo
+	Ex:
+		tail arquivo.txt
+	Especificar quantidade de linhas para ler -n ou -
+	Ex:
+		tail -n5 arquivo.txt
+		tail -5 arquivo.txt
+	(vai ler as últimas 5 linhas)
+	
+head - mostra as primeiras linhas de um arquivo
+	Ex:
+		head arquivos.txt
+	Especificar quantidade de linhas para ler -n ou -
+		head -n5 arquivo.txt
+		head -5 arquivo.txt
+	Mostrar uma quantidade de caracteres -c
+		head -c10 arquivos.txt
+	(vai mostrar os 10 primeiros caracteres do arquivo)
+
+wc - pode ser usado para contar as linhas, palavras e caracteres de um ou mais arquivos
+	Ex:
+		wc alunos.txt
+	(vai mostrar quantidade de linhas, quantidade de palavras e quantidade de caracteres)
+	Mostrar só número de linhas -l 
+		wc -l arquivo.txt
+	Mostrar só número de palavras -w
+		wc -w arquivo.txt
+	Mostrar só número de caracteres -m 
+		wc -m arquivo.txt
+	Mostrar só o número de bytes -c 
+		wc -c arquivo.txt
+
+sort - exibe o texto digitado classificado em ordem alfabética
+	Ex:
+		sort alunos.txt 
+	Ordenar ao contrário -r 
+		sort -r alunos.txt
+	Ordenar por índice -k 
+		sort -k2 arquivo.txt
+	(vai ordenar pelo 2 campo)
+	
+		tail /etc/passwd |sort -k3 -t":"
+	(ordenando pelo terceiro campo e -t mostrando para pular os :)
+	
+		tail /etc/passwd |sort -k3 -t":" -g
+	(o -g fez com que ele ordene numericamente)
+	
+uniq - não mostrar informações repetidas que estejam em sequencia
+	Ex:
+		uniq alunos.txt
+	Melhorando o comando 	
+		sort alunos.txt | uniq
+	(primeiro ordena e depois utiliza o uniq)
+	Mostrar só o que tem uma vez só -u 
+		uniq -u
+		sort alunos.txt |uniq -u
+	Mostrar só o que tem repetidas vezes no arquivo -d
+		sort alunos.txt |uniq -d 
+	Conta as repetições -c 
+		sort alunos.txt |uniq -c 
+	
+		sort alunos.txt |uniq -c |sort -r | head -n1
+	
+tr - Sua função principal é substituir (traduzir) o conteúdo de uma string (texto) recebido via entrada padrão (STDIN) de um formato para outro, ou ainda excluir caracteres
+	Ex:
+		cat alunos.txt | tr a e
+	(vai substituir tudo que tem a letra a pela letra e)
+		cat alunos.txt | tr a-z A-Z
+	(vai substituir todas letras minusculas para maiusculas)
+		cat alunos.txt | tr aei AEI
+	(vai trocar todas letras aei minusculas para AEI maiusculas)
+		cat alunos.txt | tr ' ' '\t'
+	(substituindo tudo que tem espaço por tab '/t' é o tab)
+	Deletar caracteres -d 
+		cat alunos.txt | tr -d aei 
+		(todas as letra aei foram deletadas)
+	Comprimir caracteres repetidos -s 
+		echo "Curso Shell Script" | tr -s 'l'
+	(todas palavras com dois ou mais l ficaram com um l)
+		
+		
+cut - pode ser usado para mostrar apenas seções específicas de um arquivo de texto ou da saída de outros comandos.
+	Ex:
+		cat alunos.txt | cut -c1-5
+	(vai mostrar em cada linha apenas os caracteres de 1 a 5. -c é de caracterer)
+		cat alunos.txt | cut -c1,2,5
+	(vai mostrar apenas os caracteres 1, 2 e 5 de cada linha)
+		cat alunos.txt | cut -c5-
+	(vai mostrar a partir do caractere 5)
+		cat alunos.txt | cut -c-5
+	(vai mostrar até o caractere 5)
+	Filtrar pelo campo -f e mostrar pelo que está separando os campos -d delimitador
+		cat alunos.txt | cut -d" " -f1
+	(vai mostrar somente o campo 1)
+		cat alunos.txt | cut -d" " -f1,3
+	(vai mostrar somente o campo 1 e 3)
+		cat alunos.txt | cut -d":" -f1,3
+	(vai mostrar o campo 1 e o campo 3 separados pelo :)
+
+diff - serve para mostrar a diferença entre o conteúdo de um arquivo e outro
+	Ex:
+		diff alunos.txt alunos1.txt
+	Utilizar o -w para ignorar diferenças de espaço
+		diff -w alunos.txt alunos1.txt
+	Comparar diretorios utilizar -r recursivo
+		diff -r arquivos arquivos-backup
+
+grep - procura por trechos de texto (strings) dentro de arquivos ou diretórios e retorna para você em quais arquivos a string foi encontrada, inclusive mostrando a linha em que isso ocorreu
+	Ex:
+		grep Claudia arquivo.txt
+	Utilizar "" para procurar uma string completa
+		grep "Claudia Ribeiro" arquivo*
+	Procurar palavra ignorando maiusculo minusculo -i 
+		grep -i ricardo arquivo.txt
+	Contar quantas vezes achou algo -c 
+		grep -c Ana alunos.txt
+	(vai contar quantas vezes achou Ana no arquivo)
+	Excluir algo do texto -v
+		grep -v Ana alunos.txt 
+	(não vai mostrar onde tiver Ana)
+	Procurar recursivamente -r
+		grep -r Ana *
+	Lista os arquivos que tem algo -l 
+		grep -rl Ana *
+	(vai mostrar os arquivos que tem a palavra Ana)
+	Mostrar linhas após encontrar uma palavra -A (after) e tem também o -B (before)
+		grep -A3 Carlos alunos.txt
+	(vai mostrar 3 linhas a mais depois da linha que tenha Carlos)
+		grep -B3 Carlos alunos.txt
+	(vai mostrar 3 linhas antes da linha que tenha Carlos)
+	
+fgrep - procura por cadeias de caracteres fixos em um arquivo ou arquivos. Não usa expressões regulares. Mais leve
+
+egrep - procura um padrão de texto usando expressões regulares estendidas para executar a correspondência
+		
+
+sed - Faz um filtro e transforma o conteúdo. Mais elaborado que o tr
+	Ex:
+		sed '1,3 d' alunos.txt
+	(deletar da linha 1 a 3 o d é delet)
+		sed '/Rafael/d' alunos.txt
+	(vai deletar todas as linhas que tem Rafael)
+	Substituir /s 
+		cat alunos.txt | sed 's/Paulo/Joao/'
+	(vai substituir Paulo por Joao na primeira linha)
+	Substituir em todas ocorrencia g	
+		cat alunos.txt | sed 's/Paulo/Joao/g'
+	Substituir todos os espaços por nada
+		cat alunos.txt | sed 's/ //g'
+	
+more - permite fazer a paginação de arquivos ou da entrada padrão. Enter = descer. Espaço = próxima página
+
+less - leitura de arquivos que ocupem mais de uma tela. Quando toda a tela é ocupada, o less efetua uma pausa (semelhante ao more ) e permite que você pressione Seta para Cima e Seta para Baixo ou PgUP/PgDown para fazer o rolamento da página. Para sair do less pressione q.
+Pesquisar dentro do less /XXX (procura de cima pra baixo), apertar n para passar para o proximo. ?XXX (procura de baixo pra cima)
+	
+find - pesquisa arquivos com base em nome, data do último acesso, data da última modificação, nome do usuário (proprietário), nome do grupo, tamanho, permissões, etc
+	Ex:
+		find ./ -name XXXXX
+	(depois do find colocar o diretório que vamos procurar algo. ./ é o diretório atual pra frente)
+		find ./ -user ricardo -name alunos2.txt
+	(procurando o que tiver como usuário ricardo com o nome alunos2.txt)
+	Executar um comando em cima do que achar no find:
+	Ex:
+		find ./ -name alunos* -exec ls -l {} \;
+	Sintaxe: {} vai colocar o que encontrar no find
+
+date - ver a data. d = dia. m = mes. D = data. M = minuto. H = hora
+	Ex:
+		date +%d/%m	
+
+seq - cria uma sequencia de número
+	Ex:
+		seq 10
+	(cria uma sequencia de 10 numeros)
+		seq 5 12
+	(vai do 5 ao 12)
+		seq 5 2 30
+	(começa no 5 de 2 em 2 chega no 30)
+
+expr - fazer contas. trabalha nas operações aritméticas com números inteiros.
+	Ex:
+		expr 5 + 2
+	(sempre adicionar os espaços)
+
+bc - interpreta um comando como uma conta
+	Ex:
+		echo 3 + 2 | bc
+
+&& - só executa o segundo comando se o primeiro der certo
+
+|| - se o primeiro comando executar com sucesso, não executa o segundo
+
+( ) - executar comando dentro de () faz com que ele execute "em segundo plano"
+
+> - envia o comando para o arquivo X e se utilizar em um arquivo já existente, ele apaga o que existe e coloca o comando atual
+
+>> - envia o comando para o arquivo X e não apaga o que já tiver no arquivo se já existir
+
+2> - utilizado para saída de ERRO
+
+	
+	Ex: 
+		ls -l alunos.txt3 > log.out 2>&1
+	(quer dizer que se der erro vai enviar também para alunos.txt3 = &1)
+
+/dev/null - caminho para enviar erros 
+
+< - utiliza como entrada de um comando
+		tr 'a' 'Z' < alunos.txt 
+		
+env - ver as variaveis do sistema, que são carregadas com o sistema. Variável = um nome que armazena algum valor.
+set - *
+
+$ - para referenciar uma variável
+	Ex: ver a variável home
+		$HOME
+
+Criar uma variável
+	Ex:
+		VARIAVEL1=Valor
+		VARIAVEL2="Curso de Shell Script"
+		
+$$ - mostrar PID do bash atual 
+
+.bashrc - onde salva variáveis
+
+export XXXX - para exportar uma variável para bash's filhos
+
+`XXX` - utilizado para colocar um comando dentro de uma variável
+$(XXX)
+	Ex:
+		HORA=`date +%H`
+		HORA=$(date +%H)
+	(vai mostrar a hora atual na variável)
+
+"" - protege tudo menos $ * /
+
+'' - protege tudo 
+
+DENTRO DO VI
+comandos
+	:UMNUMERO - vai até a linha desejada
+	:$ - vai até a última linha do arquivo
+	:! COMANDO - digita um comando e depois volta para o vi
+	dd - recortar/deletar uma linha 
+	dXd - onde X é o numero de linhas que deseja remover
+	p - usar dd e depois p para colar o que recortou. Colar tb o que copiou com yy
+	yy - copia
+	yXy - onde X é o numero de linhas que deseja copiar\
+	:w / :x - salva arquivo
+	:wq - sair e salvar 
+	:q! - sair sem salvar 
+
+File Globbing X Regex
+
+[] - um range de numeros e/ou letras
+	ex:
+		ls aula[1-5]
+	(vai mostrar tudo que tenha aula e na frente do numero 1 ao 5)
+{} - palavras e/ou numeros especificos
+	ex:
+		ls {Aula,AULA}2
+? ou ?? - interrogação representa quantidade de caracteres que vc queira
+	ex:
+		ls aula?
+	(1 caracter depois de aula, se fosse ??? seriam 3 caracteres)
+
+egrep - funciona como o grep mas aceita mais expressões regulares 
+
+		egrep "[Ll]inux" texto.txt
+
+^ - Indica o começo de uma linha
+		egrep "^Linux" texto.txt
+	(tudo que comece com a palavra Linux)
+
+egrep -v - o -v não mostra o filtro que vc colocar
+	Ex:
+		egrep -v "^Linux" texto.txt
+	(tudo que começa com Linux não será mostrado)
+	
+$ - Indica o final de uma linha
+		egrep "Linux$" texto.txt
+	(tudo que termina com a palavra Linux)
+	
+EXPRESSOES REGULARES
+
+		egrep "b[a-i]g*" texto.txt
+	(o * nesse caso informa que o g pode existir NENHUMA ou VÁRIAS vezes)
+
+		egrep "b[a-i]g+" texto.txt
+	(o + nesse caso informa que o g tem que existir UMA ou VÁRIAS vezes)
+	
+		egrep "b[a-i]g?" texto.txt
+	(o ? nesse caso informa que o g pode existir NENHUMA ou UMA vezes)
+	
+		egrep "O.Linux" texto.txt
+	(o . significa a quantidade de caracter depois o O que deve existir)
+		egrep "O...Linux" texto.txt
+	(exemplo de cima seriam 3 caracteres)
+
+		egrep "O.*Linux" texto.txt
+	(o .* significa que pode existir qualquer caractere entre O e Linux)
+	
+		egrep "[Ll]inux\." texto.txt
+	(protegendo com \ para entender que quer procurar o .)
+	
+
+
+
+	
+
+
