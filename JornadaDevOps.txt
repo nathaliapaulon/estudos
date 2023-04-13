@@ -1,0 +1,375 @@
+	docker container ls
+
+	docker container ls -a
+
+	docker container run -ti --rm ubuntu /bin/bash
+o --rm é para quando sair do container ele ser excluido
+
+	docker container run -ti ubuntu /bin/bash
+trabalhar em modo interativo e tty terminal
+com ubuntu e executa o bash
+
+	docker container run -d nginx
+vai instalar um nginx em modo daemon (background)
+
+	docker container exec -ti ID_CONTAINER /bin/bash 
+entrar no bash de um container ja em execução
+	
+	docker container run -p 8080:80 -d nginx
+executar um container na porta 8080(container):80 em modo daemon
+
+	docker container stop ID_CONTAINER 
+parar um container 
+
+	docker container rm ID_CONTAINER
+excluir um container
+
+	docker container run -d -p 5432:5432 -e POSTGRES_PASSWORD=Pg@123 POSTGRES_USER=kubenews POSTGRES_DB=kubenews postgres
+executar um banco de dados. PORTA LOCAL:PORTA CONTAINER
+	
+DBREAVER para administrar banco de dados
+
+	docker build -t ubuntu-curl .
+cria uma imagem de container baseado em um Dockerfile, como o Dockerfile está no diretório corrente que vai executar o comando não precisa especificar o mesmo, somente utilizar .
+
+	docker image ls
+viisualizar todas as imagens de container criadas/usadas
+
+	docker container run -ti [NOME-DA-IMAGEM] /bin/bash 
+criar um docker baseado em uma imagem existente
+
+	docker image prune
+vai excluir todas as imagens de container que não tem referencia
+
+OPCOES DE REGISTRY
+	Docker Hub
+	Elastic Container Registry
+	Azure Container Registry
+	Google Container Registry
+	Harbor (on premises)
+	
+Nomeando sua imagem Docker - padrão
+	nathaliapaulon/api-conversao:v1
+[NOMESPACE USUARIO DOCKER HUB]/[nome do repositorio]:[versão da imagem]
+
+	docker container run -d -p 8080:8080 nathaliapaulon/conversao-temperatura:v1
+	
+
+- PLANEJAMENTO
+- CODIFICAÇÃO
+- CONSTRUÇÃO / BUILD
+- TESTE
+- RELEASE / EMPACOTAMENTO
+- DEPLOY 
+- OPERAÇÃO
+- MONITORAMENTO
+
+- PLANEJAMENTO
+	- FERRAMENTAS GERENCIAMENTO DE PROJETOS: Jira, Slack, Trello
+- CODIFICAÇÃO 
+	- Git
+- BUILD
+	- PIPELINE CI ou INTEGRAÇÃO CONTÍNUA. Npm, nuget, junto com Docker e ferramentas de pipelines CI, jenkins, github actions, gitlab.
+- TESTE
+	- Testes, análises de código. G UNIT, N UNIT, SONAR KUBE.
+	- Feito na pipeline CI
+- RELEASE
+	- Artefato de entrega
+	- Arquivo executável, seu arquivo docker e etc
+	- Encerra o pipeline CI
+- DEPLOY
+	- Aplicação é entregue no ambiente
+	- Ferramentas de infra as code, terraform e ansible para gerenciamento de configuração
+	- Serviços de cloud, aws, azure, google.
+	- Entra o pipeline CD, entrega contínua.
+- OPERAÇÃO
+	- Garantir que a aplicação irá executar com estabilidade, confiabilidade e resiliencia.
+	- Kubernetes, principal ferramenta de orquestração de containers do mercado.
+- MONITORAMENTO
+	- Antecipar problemas
+	- Garantir que tudo está rodando como deveria
+	- Prometheus, grafana, elastic
+
+
+PLANEJAMENTO:
+	Taiga
+	Redmine
+	OpenProject
+	Tuleap
+CODIFICAÇÃO:
+	Git
+	GitHub
+	GitLab
+	Bitbucket
+BUILD:
+	Jenkins
+	Travis CI
+	CircleCI
+	GitLab CI/CD
+TESTE:
+	Selenium
+	JUnit
+	PHPUnit
+	Cucumber
+RELEASE:
+	Ansible
+	Terraform
+	Chef
+	Puppet
+	SaltStack
+DEPLOY:
+	Kubernetes
+	Docker Swarm
+	Nomad
+	Rancher
+OPERAÇÃO:
+	Nagios
+	Zabbix
+	Icinga
+	Prometheus
+MONITORAMENTO:
+	Grafana
+	Kibana
+	ELK Stack
+	Graylog
+
+KUBERNETES 
+	- Service Discovery - Cataloga o endereço de cada processo que foi enviado
+	- Self Healing - O Kubernetes checa constantimento o estado do container e caso algum não esteja saudável ele restarta esse container buscando a recuperação, para garantir que eu consiga
+	atualizar a minha aplicação enquanto ela está no ar o Kubernetes fornece...
+	- Estratégias de atualização - Evitando o downtime
+	
+	- É formado por um cluster, um conjunto de máquinas,e cada uma delas vai exercer 1 dos dois papeis possíveis.
+		Kubernetes Control Pane [Kube Api Server, Kube Scheduler, ETCD, Kube Controller Manager]
+		- Recomendado sempre ter mais de 1 control pane no cluster, se um falhar tem o outro.
+			- Kube Api Server - Receber toda a comunicação com o cluster, quando executo um comando como kubectl é com o kube api server que está se comunicando
+			- ETCD - Banco de chave e valor que armazena todos os dados do kubernetes, nunca acesso os dados direto pelo etcd, eu tenho que acessar sempre me comunicando com o kube api server
+			- Kube Scheduler - É o componente que determina onde cada container vai ser executado no cluster, analisa as especificações e verifica em quais nodes atende a demanda e em qual vai ser executado.
+			- Kube Controller Manager - Executa e gerencia todos os controladores do kubernetes.
+				- Controlador Kubernetes - Node Controller [Estado dos nodes do cluster e caso um deles fique fora ele vai lá e toma providencia], ReplicaSet [Garante o numero de replicas de um processo em execução]
+		Kubernetes Nodes [Kubelet, Kube Proxy, Container Runtime]
+			- Kube Proxy - que é responsável por toda comunicação de rede de todo o cluster
+			- Kubelet - Gestor no node, responsável por garantir a execução dos containers e interagir com o kube api server para reportar o status
+				Container runtime - executa os containers. ContainerD, cri-o.
+	GERENCIAMENTO DE STORAGE
+		- Container storage interface / CSI
+	GERENCIAMENTO DE REDE
+		- Container Network Interface / CNI
+	EXECUÇÃO DE CONTAINERS
+		- Container Runtime Interface / CRI 
+
+TRÊS FORMAS DE CRIAR UM CLUSTER KUBERNETES 
+	- AMBIENTE ON-PREMISSE [MicroK8s, K3S, KUBEADM, RKE]
+	- KUBERNETES AS A SERVICE [Cloud Provider, aws, azure, gcp, digital ocean]
+	- LOCAL [KIND, K3D, MICROK8S, K3S]
+	
+instalar k3s e o kubectl 
+
+Comando básico para criação do cluster kubernetes com k3d 
+	k3d cluster create
+[Utilizando container docker]
+
+Listar nodes do cluster kubernetes
+	kubectl get nodes 
+
+cat ~/.kube/config
+
+Cria mais dois container no processo de criação
+	docker container ls
+		1 node - k3d-k3s-default-server-0
+		1 load balancer - k3d-k3s-default-serverlb
+		
+Listar os cluster kubernetes criados
+	k3d cluster list
+	
+Deletar cluster
+	k3d cluster delete
+
+Criar um cluster kubernetes sem o LB
+	k3d cluster create --no-lb
+	
+Criar vários nodes - servers e agents
+	k3d cluster create meucluster --servers 3 --agents 3
+
+DEPLOY EM CLUSTER KUBERNETES 
+	POD - Menor elemento do cluster kubernetes, é nele que eu executo os meus containers, posso ter 1, 2, 5 containers.
+		POD tem o mesmo IP e Filesystem do cluster kubernetes.
+	1 pod para cada aplicação 
+		1 pod banco de dados
+		1 pod api
+		1 pod frontend
+		
+	kubectl get pods 
+
+ARQUIVO DE MANIFESTO
+	Para criar qualquer objeto no cluster kubernetes eu preciso criar um arquivo de manifesto yaml.
+	Onde coloco todos os dados que eu quero nesse objeto no cluster kubernetes.
+	Vou colocar todos os metadados, toda a especificação do que eu quero criar e vou aplicar no cluster kubernetes.
+
+Ver api version para usar no arquivo de manisfesto
+	kubectl api-resources
+
+Dentro do arquivo yaml 
+	apiVersion:	v1
+	kind: Pod
+	metadata: 
+		name: meupod
+	spec:
+		containers:
+		- name: site
+		  image: nathaliapaulon/web-page:blue
+	
+executar um arquivo de manifesto -f	
+	kubectl apply -f meupod.yaml
+
+Visualizar os pods criados
+	kubectl get pods
+
+Mais informações sobre meu cluster
+	kubectl describe [NOMEDOPOD]
+
+
+	kubectl port-forward pod/meupod 8080:80
+
+	kubectl delete pod [NOME DO POD]
+
+REPLICASET
+Quem cuida dos pods, gerencia eles, é o replicaset
+ReplicaSet é usado para garantir que um número específico de pods esteja em execução o tempo todo, permitindo a escalabilidade e a alta disponibilidade de aplicativos no Kubernetes. 
+O ReplicaSet é frequentemente usado em conjunto com outros objetos, como Deployment e Service, para orquestrar a implantação, a atualização e o dimensionamento de aplicativos.
+	
+labels - elemento chave/valor que eu coloco no meu objeto
+selectors - ele vai selecionar o objeto baseado nas labels que fazem parte dele
+	
+	kubectl get replicaset
+	
+DEPLOYMENT
+Deployment é uma maneira conveniente de gerenciar a implantação de aplicativos em contêineres no Kubernetes, fornecendo recursos avançados de gerenciamento de versão e atualização.
+
+Voltar um deployment
+	kubectl rollout undo deployment [NOME DO CLUSTER]
+	
+SERVICE
+Service é uma maneira conveniente de fornecer conectividade de rede para os aplicativos em contêineres em um cluster do Kubernetes, fornecendo uma interface de rede estável e gerenciando o 
+balanceamento de carga e a descoberta de serviços.
+
+	NÃO MUITO UTILIZADO
+	ClusterIP: Esse é o tipo de Service padrão. Ele expõe o Service em um endereço IP interno dentro do cluster Kubernetes. Esse tipo de Service é usado para expor um conjunto de pods internamente 
+	dentro do cluster para outros serviços.
+
+	NodePort: Este tipo de Service expõe o Service em um determinada porta em cada nó do cluster. Ele permite que o Service seja acessado de fora do cluster, acessando o IP do nó do cluster e a porta 
+	especificada. Esse tipo de Service é usado para permitir que serviços externos acessem os aplicativos em contêineres dentro do cluster.
+
+	MAIS UTILIZADO
+	LoadBalancer: Este tipo de Service cria um balanceador de carga externo que pode encaminhar o tráfego de entrada para os pods do Service. Ele é usado para expor um Service na Internet ou em uma 
+	rede externa.
+
+	ExternalName: Esse tipo de Service é usado para fornecer uma referência externa para um serviço fora do cluster. Ele mapeia um nome DNS para um endereço externo. Esse tipo de Service é usado para 
+	permitir que os serviços dentro do cluster se comuniquem com serviços externos por meio de um nome DNS amigável.
+
+		Cada tipo de Service no Kubernetes tem um uso específico e pode ser usado em conjunto com outros objetos, como Deployments ou ReplicaSets, para fornecer conectividade de rede confiável para 
+		aplicativos em contêineres em um cluster do Kubernetes.
+		
+	porta Services: 30000-32767
+
+Listar todos os pods
+	kubectl get all 
+
+	kubectl port-forward service/[NOME DO SERVICE] 8080:80
+	
+PROFISSIONAL DEVOPS precisa ser um agente de transformação, que tenham vontade de melhorar os processos, projetos e o ambiente que atuam.
+	- Difundindo a cultura colaborativa
+	- Otimizando os processos 
+	- Entregando soluções cada vez mais inovadoras, performáticas e confiáveis.
+	
+INFRAESTRUTURA SOBRE CÓDIGO - INFRA AS CODE IaC
+	Automação
+	Simplificação da infraestrutura
+
+CLI comandos proprios dos cloud provider
+	AWS CLI
+	Azure CLI
+	GCP CLI
+	
+SDK Software Development Kits - Automação por Programação
+	AWS SDK
+	Azure SDK
+	GCP SDK
+
+TERRAFORM 
+	Terraform é um provider 
+	Provisionamento de Infraestrutura 
+		Declara os elementos da Infraestrutura 
+		Está relacionado a criação de recursos 
+	
+ANSIBLE
+	Gerenciamento de configuração
+		Configura os elementos da infraestrutura
+		Está relacionado a configuração de recursos 
+
+Terraform é uma linguagem chamada
+	Hashicorp Configuration Language 
+	
+ESTRUTURA
+	<BLOCK TYPE>"<BLOCK LABEL>""<BLOCK LABEL>" {
+		<IDENTIFIER> = <EXPRESSION>
+	}
+
+	Resources
+		Recurso no cloud provider
+		TIPO DE RECURSOS(varia dependendo do cloud provider) e depois NOME DO BLOCO
+		
+		resource "digitalocean_droplet""maquina_labs_tf" {
+			image = "ubuntu-20-04-x64"
+			name = "maquina-labs-tf"
+			region = "nyc1"
+			size = "s-1vcpu-2gb"
+		}
+
+	Data Sources
+		pode ser uma chave ssh, um elemento da infraestrutura
+		
+		data "digitalocean_ssh_key" "minha_chave" {
+			name = "aula"
+		}
+
+	Providers 
+
+		provider "digitalocean" {
+			token = ""
+		}
+
+	Terraform Settings
+		terraform {
+			required_version = ">1.0"
+			required_providers {
+			digitalocean = {
+			 source = "digitalocean/digitalocean"
+			 version = "2.16.0"
+		  }
+		 }
+		}
+
+	Variables
+		variable "regiao" {
+			type = string
+			default ="nyc1"
+			description = "Região de uso na Digital Ocean"
+		}
+		
+	Outputs
+	Retorno sobre um valor de um elemento específico do meu projeto
+		output "droplet_ip" {
+			value = digitalocean_droplet.maquina_labs_tf.ipv4_address
+		}
+
+registry.terraform.io
+
+Formatar o arquivo .tf
+	terraform fmt
+	
+Mostrar o plano de execução
+	terraform plan
+	
+
+
