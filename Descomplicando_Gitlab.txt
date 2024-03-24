@@ -1,4 +1,5 @@
 https://github.com/badtuxx/DescomplicandoGitlab
+https://docs.gitlab.com/ee/ci/yaml/
 
 git config --global user.name "Nathalia Paulon"
 git config --global user.email "nathaliapaulon@hotmail.com"
