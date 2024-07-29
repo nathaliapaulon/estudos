@@ -53,3 +53,6 @@ EXPRESSIONS É tudo que dentro do arquivo HCL ele vai se expressar no valor. Val
 
 TERRAFORM CONSOLE terraform console [OPÇÃO] [DIRETORIO]
 
+Tudo sobre MODULES
+	www.terraform.io/docs/configuration/modules.html
+	

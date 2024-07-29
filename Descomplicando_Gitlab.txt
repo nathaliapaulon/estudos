@@ -139,8 +139,8 @@ Criar dockerfile
 dockerfile depois crio o meu arquivo .ci para buildar o meu dockerfile 
 depois crio meu arquivo terraform
 
-
-
+UM PROJETO FEITO 
+https://gitlab.com/nathaliapaulon/Projeto-DesafioDevOps
 
 
 
