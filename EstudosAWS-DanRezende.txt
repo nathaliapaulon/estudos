@@ -1,0 +1,107 @@
+Amazon EMR (Elastic Map Reduce)
+O que faz: Processa grandes volumes de dados com frameworks como Apache Hadoop e Spark. Ele permite a análise e transformação de dados em larga escala.
+Exemplo de uso: Uma empresa de e-commerce usa o EMR para processar dados de logs de cliques de usuários e extrair insights sobre comportamento de navegação.
+
+2. Amazon Kinesis
+O que faz: Permite coletar, processar e analisar dados em tempo real, especialmente para grandes volumes de eventos e logs.
+Exemplo de uso: Uma empresa de mídia usa o Kinesis para analisar visualizações de vídeos em tempo real e ajustar recomendações com base no comportamento do usuário.
+
+3. AWS AppSync
+O que faz: Facilita o desenvolvimento de APIs GraphQL, permitindo que aplicativos acessem dados em tempo real, offline e de múltiplas fontes.
+Exemplo de uso: Um aplicativo móvel de redes sociais usa o AppSync para sincronizar dados de perfis de usuários, atualizações em tempo real e notificações em diferentes 
+dispositivos.
+
+4. AWS Step Functions
+O que faz: Orquestra fluxos de trabalho, coordenando a execução de vários serviços AWS em uma sequência definida de etapas.
+Exemplo de uso: Uma empresa usa Step Functions para automatizar o processamento de dados, acionando funções Lambda, chamadas de APIs e armazenamento de dados em S3 de forma 
+coordenada.
+
+5. AWS Data Exchange
+O que faz: Facilita a troca de dados entre provedores e assinantes, permitindo a compra ou a venda de conjuntos de dados seguros e verificados.
+Exemplo de uso: Uma empresa de pesquisa médica assina datasets de provedores para análise de tendências de saúde pública em diferentes regiões.
+Esses exemplos ilustram como os serviços podem ser aplicados em cenários práticos.
+
+1. Amazon Aurora
+O que faz: Um banco de dados relacional compatível com MySQL e PostgreSQL, projetado para alta performance, disponibilidade e escalabilidade. Oferece o desempenho de bancos de 
+dados comerciais, mas com a simplicidade dos bancos de dados open-source.
+Exemplo de uso: Uma empresa de SaaS (Software como Serviço) utiliza Aurora para gerenciar o banco de dados de usuários e transações, com replicação automática para garantir 
+alta disponibilidade e backups automáticos.
+
+2. Amazon DynamoDB
+O que faz: Banco de dados NoSQL totalmente gerenciado, projetado para alta performance em escala, com armazenamento de chave-valor e documento. Oferece baixa latência para 
+aplicativos de alta demanda.
+Exemplo de uso: Um aplicativo de jogos móveis usa DynamoDB para armazenar perfis de jogadores e status de jogos, com atualizações instantâneas e escalabilidade automática para 
+milhões de usuários simultâneos.
+
+1. AWS X-Ray
+O que faz: Ferramenta de rastreamento distribuído que ajuda a depurar e monitorar aplicativos em produção, fornecendo insights sobre o desempenho de solicitações enquanto 
+atravessam vários serviços.
+Exemplo de uso: Uma equipe de desenvolvimento usa X-Ray para rastrear uma aplicação de e-commerce baseada em microserviços, identificando gargalos de performance nas 
+comunicações entre o serviço de pagamento e o banco de dados.
+
+2. AWS Amplify
+O que faz: Um conjunto de ferramentas e serviços que facilita o desenvolvimento e a hospedagem de aplicativos front-end (móveis e web), oferecendo suporte para backend em 
+nuvem, autenticação, armazenamento e APIs.
+Exemplo de uso: Uma startup utiliza Amplify para desenvolver rapidamente um aplicativo móvel que autentica usuários via Amazon Cognito, armazena dados no S3 e oferece 
+sincronização offline.
+
+3. Amazon API Gateway
+O que faz: Serviço totalmente gerenciado que facilita a criação, publicação e monitoramento de APIs REST, WebSocket e HTTP, permitindo que desenvolvedores conectem 
+aplicativos a backends, como funções Lambda, EC2, ou bancos de dados.
+Exemplo de uso: Uma empresa de fintech utiliza API Gateway para expor uma API que permite que seus aplicativos móveis interajam com o sistema bancário, executando funções 
+Lambda para processar transações.
+
+4. AWS Device Farm
+O que faz: Serviço de teste de aplicativos que permite testar e interagir com aplicativos móveis e da web em uma ampla variedade de dispositivos reais, ajudando a garantir 
+compatibilidade e funcionamento.
+Exemplo de uso: Uma empresa de software testa seu aplicativo móvel em diferentes modelos de smartphones e tablets no Device Farm, simulando interações reais e identificando 
+bugs específicos de dispositivos.
+
+1. Amazon Comprehend
+O que faz: Serviço de processamento de linguagem natural (NLP) que usa machine learning para extrair insights e significado de textos, como identificar sentimentos, entidades, 
+tópicos e idiomas.
+Exemplo de uso: Uma empresa de análise de mídia usa Comprehend para analisar comentários de clientes em redes sociais, detectando automaticamente o sentimento geral 
+(positivo, negativo ou neutro) sobre seus produtos.
+
+2. Amazon Kendra
+O que faz: Um serviço de busca inteligente baseado em machine learning que facilita a pesquisa em grandes volumes de documentos, fornecendo respostas relevantes a perguntas 
+feitas em linguagem natural.
+Exemplo de uso: Uma empresa de consultoria jurídica usa Kendra para permitir que advogados façam buscas em milhares de documentos legais e recibos internos, obtendo respostas 
+precisas e relevantes rapidamente.
+
+3. Amazon Lex
+O que faz: Serviço para construir interfaces de conversa (chatbots e assistentes virtuais) com reconhecimento de fala e texto, sendo o mesmo mecanismo usado pelo Amazon Alexa.
+Exemplo de uso: Um banco usa Lex para criar um chatbot de atendimento ao cliente que permite aos usuários verificar saldos de contas, realizar transferências e obter informações 
+sobre suas transações bancárias por voz ou texto.
+
+4. Amazon Polly
+O que faz: Serviço que converte texto em fala realista (text-to-speech), com suporte para vários idiomas e estilos de fala, permitindo que aplicações falem com os usuários.
+Exemplo de uso: Uma empresa de e-learning usa Polly para narrar automaticamente cursos online em diferentes idiomas, oferecendo uma experiência mais acessível e interativa 
+aos alunos.
+
+5. Amazon Rekognition
+O que faz: Serviço de análise de imagens e vídeos que identifica objetos, pessoas, textos, cenas e atividades, além de fornecer recursos de reconhecimento facial e detecção 
+de emoções.
+Exemplo de uso: Uma empresa de segurança usa Rekognition para analisar imagens de câmeras de vigilância e detectar automaticamente a presença de indivíduos suspeitos ou 
+atividades incomuns em tempo real.
+
+1. Amazon SageMaker
+O que faz: Serviço totalmente gerenciado que permite construir, treinar e implantar modelos de machine learning em escala, facilitando todo o ciclo de vida do machine 
+learning, desde a preparação de dados até a implementação.
+Exemplo de uso: Uma empresa de seguros usa SageMaker para construir modelos de previsão de sinistros, analisando grandes volumes de dados históricos para detectar padrões 
+e prever possíveis fraudes.
+
+2. Amazon Textract
+O que faz: Serviço que utiliza machine learning para extrair automaticamente texto, tabelas e outros dados estruturados de documentos digitalizados, como PDFs ou imagens.
+Exemplo de uso: Um banco utiliza Textract para automatizar o processamento de formulários de solicitação de empréstimos, extraindo automaticamente as informações dos 
+documentos e armazenando-as em um banco de dados.
+
+3. Amazon Transcribe
+O que faz: Serviço de conversão de fala para texto (speech-to-text) que transcreve automaticamente gravações de áudio, identificando falantes e suportando vários idiomas.
+Exemplo de uso: Uma empresa de atendimento ao cliente usa Transcribe para transcrever ligações telefônicas e analisar os conteúdos em busca de melhorias no atendimento, 
+além de gerar relatórios automáticos sobre as interações.
+
+4. Amazon Translate
+O que faz: Serviço de tradução automática que traduz textos entre diferentes idiomas em tempo real, utilizando machine learning para fornecer traduções precisas e rápidas.
+Exemplo de uso: Um site de e-commerce global usa Translate para exibir descrições de produtos em vários idiomas, permitindo que os clientes vejam as informações no idioma 
+local automaticamente.
